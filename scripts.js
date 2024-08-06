@@ -1,26 +1,19 @@
-// 스프레드시트 ID와 시트명
-const SPREADSHEET_ID = '1qj4ClqV83wg2N4AAlJhvciDXPCoUJD7HBGWubdHUqjA';
-const SHEET_NAME = '시트1';
+// 웹앱 URL
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxwKmVmoz8ZjM2HlQOD8-6ejo6vDsHrIwCM9UdZir47a7Xpyeq0G_JFHDo4pEitOOoC/exec';
 
-// Tabletop을 사용하여 Google 스프레드시트 데이터 가져오기
-window.addEventListener('DOMContentLoaded', () => {
-    Tabletop.init({
-        key: SPREADSHEET_ID,
-        callback: showInfo,
-        simpleSheet: true
-    });
-});
-
-function showInfo(data, tabletop) {
-    const container = document.getElementById('instagram-embeds');
-
-    data.forEach(row => {
-        const embedCode = row['임베드 코드']; // '임베드 코드'가 B열에 해당한다고 가정
-        if (embedCode) {
-            const div = document.createElement('div');
-            div.classList.add('embed-container');
-            div.innerHTML = embedCode;
-            container.appendChild(div);
-        }
-    });
-}
+// Fetch API를 사용하여 웹앱에서 JSON 데이터 가져오기
+fetch(WEB_APP_URL)
+    .then(response => response.json())
+    .then(data => {
+        const container = document.getElementById('instagram-embeds');
+        data.forEach(row => {
+            const embedCode = row['임베드 코드'];
+            if (embedCode) {
+                const div = document.createElement('div');
+                div.classList.add('embed-container');
+                div.innerHTML = embedCode;
+                container.appendChild(div);
+            }
+        });
+    })
+    .catch(error => console.error('Error fetching data:', error));
