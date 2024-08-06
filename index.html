@@ -1,29 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Video Gallery</title>
-    <link rel="stylesheet" href="styles.css?v=1.0.1"> <!-- 버전 번호 추가 -->
+    <title>Instagram Embed Viewer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="videoList">Loading...</div>
-    <div class="overlay" id="overlay" onclick="closePopup()"></div>
-    <div class="popup" id="popup">
-        <button class="close-btn" onclick="closePopup()">×</button>
-        <div id="videoPlayer"></div>
+    <h1>Instagram Embed Viewer</h1>
+    <div id="instagram-embeds">
+        <!-- Instagram embed codes will be injected here -->
     </div>
-    <script src="scripts.js?v=1.0.1" defer></script> <!-- 버전 번호 추가 -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
-            .then(function(registration) {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch(function(error) {
-                console.log('Service Worker registration failed:', error);
-            });
-        }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.4/tabletop.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
